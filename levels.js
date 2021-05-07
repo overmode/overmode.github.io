@@ -40,24 +40,81 @@ Breakout.Colors = {
     a: '#62C4E7', // light blue
     b: '#00A5DE', // dark  blue
     x: '#969699', // light gray
-    y: '#7B797E'  // dark  gray
+    y: '#7B797E',  // dark  gray
   },
+
+  custom : {
+    b: '#000000' // black
+  }
 
 
 };
 
 Breakout.Levels = [
 
-  { colors: Breakout.Colors.pastel,
+  { colors: Breakout.Colors.custom,
     bricks: [
-      "", "", "", "", "", "",
-      "yyyyyYYYYYyyyyyYYYYYyyyyyYYYYY",
-      "pppppPPPPPpppppPPPPPpppppPPPPP",
-      "bbbbbBBBBBbbbbbBBBBBbbbbbBBBBB",
-      "gggggGGGGGgggggGGGGGgggggGGGGG",
-      "oooooOOOOOoooooOOOOOoooooOOOOO"
+      "", "",
+      "                              ",
+      "bbbbBBBBbbbbBBBBbbbb          ",
+      "                              ", 
+      "b   b b   b bbbbbb b  b bbbbbb",
+      "b   b bbbbb b    b b bb b    b",
+      "bBBBb   b   b    b bb   b    b",
+      "b   b   b   b    b b bb b    b",
+      "b   b   b   bbbbbb b  b bbbbbb",
+      "                              ",
+      "           bbbbBBBBbbbbBBBBbbb",
+      "                              ",
+      "                              ",
+      "                              ",
+      "                              ",
     ]
   },
+
+  { colors: Breakout.Colors.vintage,
+    bricks: [
+      "", "",
+      "                              ",
+      "                              ",
+      "     bbbBBBcccCCCdddDDDeee    ", 
+      "     aaaAAAaaaAAAaaaAAAaaa    ",
+      "     fffFFFfffFFFfffFFFfff    ",
+      "     bbbBBBcccCCCdddDDDeee    ",
+      "     aaaAAAaaaAAAaaaAAAaaa    ",
+      "     fffFFFfffFFFfffFFFfff    ",
+      "     bbbBBBcccCCCdddDDDeee    ",
+      "     aaaAAAaaaAAAaaaAAAaaa    ",
+      "     fffFFFfffFFFfffFFFfff    ",
+      "     bbbBBBcccCCCdddDDDeee    ",
+      "                              ",
+      "                              ",
+    ],
+    image : ['images/l_raphael.png']
+  },
+
+  { colors: Breakout.Colors.vintage,
+    bricks: [
+      "", "",
+      "                              ",
+      "                              ",
+      "     bbbBBBcccCCCdddDDDeee    ", 
+      "     aaaAAAaaaAAAaaaAAAaaa    ",
+      "     fffFFFfffFFFfffFFFfff    ",
+      "     bbbBBBcccCCCdddDDDeee    ",
+      "     aaaAAAaaaAAAaaaAAAaaa    ",
+      "     fffFFFfffFFFfffFFFfff    ",
+      "     bbbBBBcccCCCdddDDDeee    ",
+      "     aaaAAAaaaAAAaaaAAAaaa    ",
+      "     fffFFFfffFFFfffFFFfff    ",
+      "     bbbBBBcccCCCdddDDDeee    ",
+      "                              ",
+      "                              ",
+    ],
+    image : ['images/fitspro.png']
+  },
+  
+
 
   { colors: Breakout.Colors.arkanoid,
     bricks: [

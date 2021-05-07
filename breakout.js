@@ -69,12 +69,12 @@ Breakout = {
     ],
 
     sounds: {
-      brick:    '/sound/breakout/brick.mp3',
-      paddle:   '/sound/breakout/paddle.mp3',
-      go:       '/sound/breakout/go.mp3',
-      levelup:  '/sound/breakout/levelup.mp3',
-      loselife: '/sound/breakout/loselife.mp3',
-      gameover: '/sound/breakout/gameover.mp3'
+      brick:    'sound/breakout/brick.mp3',
+      paddle:   'sound/breakout/paddle.mp3',
+      go:       'sound/breakout/go.mp3',
+      levelup:  'sound/breakout/levelup.mp3',
+      loselife: 'sound/breakout/loselife.mp3',
+      gameover: 'sound/breakout/gameover.mp3'
     }
 
   },
@@ -127,6 +127,7 @@ Breakout = {
     ctx.clearRect(0, 0, this.width, this.height);
     ctx.fillStyle = this.color.background;
     ctx.fillRect(0, 0, this.width, this.height);
+    
     this.court.draw(ctx);
     this.paddle.draw(ctx);
     this.ball.draw(ctx);
@@ -331,6 +332,10 @@ Breakout = {
     
     reset: function(level) {
       var layout = Breakout.Levels[level];
+      
+      // Custom image to display in background
+      this.image_src = layout.image;
+      
       var line, brick, score, c, n, x, y, nx, ny = Math.min(layout.bricks.length, this.cfg.ychunks);
       this.bricks = [];
       for(y = 0 ; y < ny ; y++) {
@@ -355,6 +360,7 @@ Breakout = {
       this.numbricks = this.bricks.length;
       this.numhits   = 0;
       this.resize();
+    
     },
 
     resize: function() {
@@ -389,6 +395,12 @@ Breakout = {
     },
 
     draw: function(ctx) {
+
+      // Display Custom background image
+      const image = new Image(60, 45)
+      image.src = this.image_src
+      ctx.drawImage(image, 300, 200, 400, 200);
+
       if (this.rerender) {
         this.canvas = Game.renderToCanvas(this.game.width, this.game.height, this.render.bind(this), this.canvas);
         this.rerender = false;
@@ -397,6 +409,7 @@ Breakout = {
     },
 
     render: function(ctx) {
+
       var n, brick;
 
       ctx.translate(0.5, 0.5); // crisp 1px lines for the brick borders
