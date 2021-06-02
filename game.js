@@ -19,7 +19,7 @@ if (!Function.prototype.bind) {
         self  = this,
         nop   = function () {},
         bound = function () {
-          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));   
+          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));
         };
     nop.prototype   = self.prototype;
     bound.prototype = new nop();
@@ -56,10 +56,10 @@ if (!Object.extend) {
 
 /* NOT READY FOR PRIME TIME
 if (!window.requestAnimationFrame) {// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-  window.requestAnimationFrame = window.webkitRequestAnimationFrame || 
-                                 window.mozRequestAnimationFrame    || 
-                                 window.oRequestAnimationFrame      || 
-                                 window.msRequestAnimationFrame     || 
+  window.requestAnimationFrame = window.webkitRequestAnimationFrame ||
+                                 window.mozRequestAnimationFrame    ||
+                                 window.oRequestAnimationFrame      ||
+                                 window.msRequestAnimationFrame     ||
                                  function(callback, element) {
                                    window.setTimeout(callback, 1000 / 60);
                                  }
@@ -221,7 +221,7 @@ Game = {
     } catch (e) {}
 
     return {
-      full:      ua, 
+      full:      ua,
       name:      key + (version ? " " + version.toString() : ""),
       version:   version,
       isFirefox: (key == "firefox"),
@@ -328,7 +328,7 @@ Game = {
     return Game.randomChoice([true, false]);
   },
 
-  timestamp: function() { 
+  timestamp: function() {
     return new Date().getTime();
   },
 
@@ -415,7 +415,7 @@ Game = {
         vec.y = vec.y / vec.m;
         vec.m = vec.m / vec.m;
       }
-      return vec; 
+      return vec;
     },
 
     magnitude: function(x, y) {
@@ -455,35 +455,35 @@ Game = {
     ballIntercept: function(ball, rect, nx, ny) {
       var pt;
       if (nx < 0) {
-        pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny, 
-                                 rect.right  + ball.radius, 
-                                 rect.top    - ball.radius, 
-                                 rect.right  + ball.radius, 
-                                 rect.bottom + ball.radius, 
+        pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny,
+                                 rect.right  + ball.radius,
+                                 rect.top    - ball.radius,
+                                 rect.right  + ball.radius,
+                                 rect.bottom + ball.radius,
                                  "right");
       }
       else if (nx > 0) {
-        pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny, 
-                                 rect.left   - ball.radius, 
-                                 rect.top    - ball.radius, 
-                                 rect.left   - ball.radius, 
+        pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny,
+                                 rect.left   - ball.radius,
+                                 rect.top    - ball.radius,
+                                 rect.left   - ball.radius,
                                  rect.bottom + ball.radius,
                                  "left");
       }
       if (!pt) {
         if (ny < 0) {
-          pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny, 
-                                   rect.left   - ball.radius, 
-                                   rect.bottom + ball.radius, 
-                                   rect.right  + ball.radius, 
+          pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny,
+                                   rect.left   - ball.radius,
+                                   rect.bottom + ball.radius,
+                                   rect.right  + ball.radius,
                                    rect.bottom + ball.radius,
                                    "bottom");
         }
         else if (ny > 0) {
-          pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny, 
-                                   rect.left   - ball.radius, 
-                                   rect.top    - ball.radius, 
-                                   rect.right  + ball.radius, 
+          pt = Game.Math.intercept(ball.x, ball.y, ball.x + nx, ball.y + ny,
+                                   rect.left   - ball.radius,
+                                   rect.top    - ball.radius,
+                                   rect.right  + ball.radius,
                                    rect.top    - ball.radius,
                                    "top");
         }
@@ -557,7 +557,7 @@ Game = {
         count:  0,
         fps:    0,
         update: 0,
-        draw:   0, 
+        draw:   0,
         frame:  0  // update + draw
       };
     },
@@ -577,7 +577,7 @@ Game = {
       fps:    "fps: ",
       update: "update: ",
       draw:   "draw: ",
-      ms:     "ms"  
+      ms:     "ms"
     },
 
     drawStats: function(ctx) {

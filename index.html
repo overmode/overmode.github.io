@@ -1,15 +1,35 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
   <title>Javascript Breakout</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width", initial-scale=1.0, user-scalable="no"/>
-  <link href="breakout.css" media="screen, print" rel="stylesheet" type="text/css" /> 
-</head> 
- 
-<body> 
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link href="breakout.css" media="screen, print" rel="stylesheet" type="text/css" />
+</head>
 
+<body>
 
+ <!-- Submission Form-->
+  <div class="form-popup" id="myForm">
+  <form class="form-container">
+    <h1>Je participe avec mon highscore !</h1>
+
+    <label for="nom"><b>Nom</b></label>
+    <input type="text" placeholder="Einstein" name="nom" required>
+
+    <label for="prénom"><b>Prénom</b></label>
+    <input type="text" placeholder="Alfred" name="prenom" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+
+    <button type="submit" class="btn" onclick="submitForm()">Participer</button>
+    <button type="submit" class="btn cancel" onclick="closeForm()">Fermer</button>
+  </form>
+  </div>
+
+<!-- Game -->
   <div id="breakout">
     <canvas id="canvas">
       <div class='unsupported'>
@@ -19,13 +39,13 @@
     <div id="levels">
       <img id="next" class="disabled" src="images/up.png"   title="next level">
       <img id="prev" class="disabled" src="images/down.png" title="previous level">
-      <span id="label">level:</span><span id="level"></span>
+      <span id="label" style="font-family:'Montserrat'">level:</span><span id="level"></span>
     </div>
     <div id="controls">
       <input id='sound' type='checkbox' />
       <label for='sound'>sound</label>
     </div>
-    <div id="instructions" style='display:none;'>
+    <div id="instructions" style="display:none;">
       <div class='keyboard'>
         <b>space</b> to start<br>
         <b>left/right</b> to move paddle<br>
@@ -47,5 +67,5 @@
   });
   </script>
 
-</body> 
+</body>
 </html>

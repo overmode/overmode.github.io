@@ -1,4 +1,41 @@
 //=============================================================================
+// Form
+//=============================================================================
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+function submitForm() {
+
+
+
+  var first_name = document.getElementsByTagName("input")[0].value;
+  var last_name = document.getElementsByTagName("input")[1].value;
+  var email = document.getElementsByTagName("input")[2].value;
+
+  var highscore = score.highscore;
+
+  window.confirm("Your score was submitted successfully !" + first_name + last_name + email + highscore);
+
+
+
+  const fs = require('fs');
+  let fileContent = 'I can write';
+  fs.writeFileSync('message.txt', fileContent);
+
+  window.alert("");
+
+  console.log(first_name, last_name, email, highscore)
+  closeForm()
+}
+
+
+//=============================================================================
 // Breakout
 //=============================================================================
 
@@ -23,29 +60,29 @@ Breakout = {
 
     ball: {
       radius:  0.3,
-      speed:   15,
+      speed:   20,
       labels: {
-        3: { text: 'ready...', fill: '#D82800', stroke: 'black', font: 'bold 28pt arial' },
-        2: { text: 'set..',    fill: '#FC9838', stroke: 'black', font: 'bold 28pt arial' },
-        1: { text: 'go!',      fill: '#80D010', stroke: 'black', font: 'bold 28pt arial' }
+        3: { text: 'ready...', fill: 'black', font: 'bold 28pt Montserrat' },
+        2: { text: 'set..',    fill: 'black', font: 'bold 28pt Montserrat' },
+        1: { text: 'go!',      fill: 'black', font: 'bold 28pt Montserrat' }
       }
     },
 
     paddle: {
       width:  6,
       height: 1,
-      speed:  20
+      speed:  30
     },
 
     color: {
-      background: 'rgba(200, 200, 200, 0.5)',
-      foreground: 'green',
+      background: '#fff',
+      foreground: '#fff',
       border:     '#222',
-      wall:       '#333',
+      wall:       '#fff',
       ball:       'black',
-      paddle:     'rgb(245,111,37)',
-      score:      "#EFD279",
-      highscore:  "#AFD775"
+      paddle:     'black',
+      score:      'black',
+      highscore:  'black'
     },
 
     state: {
@@ -127,7 +164,7 @@ Breakout = {
     ctx.clearRect(0, 0, this.width, this.height);
     ctx.fillStyle = this.color.background;
     ctx.fillRect(0, 0, this.width, this.height);
-    
+
     this.court.draw(ctx);
     this.paddle.draw(ctx);
     this.ball.draw(ctx);
@@ -158,6 +195,7 @@ Breakout = {
 
   onlose: function() {
     this.playSound('gameover');
+    openForm()
   },
 
   onleavegame: function() {
@@ -254,11 +292,11 @@ Breakout = {
     load:     function()  { this.highscore = this.game.storage.highscore ? parseInt(this.game.storage.highscore) : 1000; },
     save:     function()  { if (this.score > this.highscore) this.game.storage.highscore = this.highscore = this.score;  },
 
-    resetLives: function()  { this.setLives(this.cfg.lives.initial);                       }, 
+    resetLives: function()  { this.setLives(this.cfg.lives.initial);                       },
     setLives:   function(n) { this.lives = n; this.rerender = true;                        },
     gainLife:   function()  { this.setLives(Math.min(this.cfg.lives.max, this.lives + 1)); },
     loseLife:   function()  { this.setLives(this.lives-1); return (this.lives == 0);       },
- 
+
     update: function(dt) {
       if (this.vscore < this.score) {
         this.vscore = Math.min(this.score, this.vscore + 10);
@@ -271,8 +309,10 @@ Breakout = {
       this.top    = this.game.court.top - this.game.court.wall.size*2;
       this.width  = this.game.court.width;
       this.height = this.game.court.wall.size*2;
-      this.scorefont = "bold " + Math.max(9, this.game.court.wall.size - 2) + "pt arial";
-      this.highfont  = ""      + Math.max(9, this.game.court.wall.size - 8) + "pt arial";
+      //this.scorefont = "bold " + Math.max(9, this.game.court.wall.size - 2) + "Montserrat";
+      //this.highfont  = ""      + Math.max(9, this.game.court.wall.size - 8) + "Montserrat";
+      this.scorefont = "bold 8pt Montserrat";
+      this.highfont  = "9pt Montserrat";
       ctx.save();
       ctx.font = this.scorefont;
       this.scorewidth = ctx.measureText(this.format(0)).width;
@@ -313,8 +353,30 @@ Breakout = {
       }
       ctx.translate(this.scorewidth + 20, (this.height-paddle.h) / 2);
       for(var n = 0 ; n < this.lives ; n++) {
-        this.game.paddle.render.call(paddle, ctx);
-        ctx.translate(paddle.w + 5, 0);
+
+        // Write heart emoji here
+        const image = new Image(40, 40)
+        image.src = 'images/heart-emoji.png'
+
+        //console.log(this.canvas.width, this.canvas.height)
+        var width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+
+        var height = window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+
+        logo_width = (10 / 1024) * width
+        logo_x = ((15*n + 0) / 1024) * width
+        logo_y = (-3 / 768) * height
+
+        ctx.drawImage(image, logo_x, logo_y, logo_width, logo_width);
+
+        // original code
+        //this.game.paddle.render.call(paddle, ctx);
+        //ctx.translate(paddle.w + 5, 0);
+        //
       }
 
     }
@@ -329,13 +391,13 @@ Breakout = {
       this.game = game;
       this.cfg  = cfg;
     },
-    
+
     reset: function(level) {
       var layout = Breakout.Levels[level];
-      
+
       // Custom image to display in background
       this.image_src = layout.image;
-      
+
       var line, brick, score, c, n, x, y, nx, ny = Math.min(layout.bricks.length, this.cfg.ychunks);
       this.bricks = [];
       for(y = 0 ; y < ny ; y++) {
@@ -360,7 +422,7 @@ Breakout = {
       this.numbricks = this.bricks.length;
       this.numhits   = 0;
       this.resize();
-    
+
     },
 
     resize: function() {
@@ -396,15 +458,22 @@ Breakout = {
 
     draw: function(ctx) {
 
-      // Display Custom background image
-      const image = new Image(60, 45)
-      image.src = this.image_src
-      ctx.drawImage(image, 300, 200, 400, 200);
-
       if (this.rerender) {
         this.canvas = Game.renderToCanvas(this.game.width, this.game.height, this.render.bind(this), this.canvas);
         this.rerender = false;
       }
+
+      // Display Custom background image
+      const image = new Image(60, 45)
+      image.src = this.image_src
+      //console.log(this.canvas.width, this.canvas.height)
+      logo_width = (400 / 1024) * this.canvas.width
+      logo_height = (200 / 768) * this.canvas.height
+      logo_x = (300 / 1024) * this.canvas.width
+      logo_y = (200 / 768) * this.canvas.height
+
+      ctx.drawImage(image, logo_x, logo_y, logo_width, logo_height);
+
       ctx.drawImage(this.canvas, 0, 0);
     },
 
@@ -419,13 +488,13 @@ Breakout = {
         brick = this.bricks[n];
         if (!brick.hit) {
           ctx.fillStyle = brick.color;
-          ctx.fillRect(brick.x, brick.y, brick.w, brick.h); 
+          ctx.fillRect(brick.x, brick.y, brick.w, brick.h);
           ctx.strokeRect(brick.x, brick.y, brick.w, brick.h);
         }
       }
 
       ctx.fillStyle = this.game.color.wall;
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1; // Modify wall thickness here
       ctx.beginPath();
       ctx.moveTo(this.wall.top.left,     this.wall.top.top);
       ctx.lineTo(this.wall.top.right,    this.wall.top.top);
@@ -675,9 +744,9 @@ Breakout = {
     render: function(ctx) {
 
       var gradient = ctx.createLinearGradient(0, this.h, 0, 0);
-      gradient.addColorStop(0.36, 'rgb(245,111,37)');
-      gradient.addColorStop(0.68, 'rgb(255,145,63)');
-      gradient.addColorStop(0.84, 'rgb(255,174,95)');
+      gradient.addColorStop(0.36, '#B31A0A');
+      gradient.addColorStop(0.68, '#D03F33');
+      gradient.addColorStop(0.84, '#C17D73');
 
       var r = this.h/2;
 
@@ -700,7 +769,7 @@ Breakout = {
     },
 
     moveLeft:        function() { this.dleft  = 1; },
-    moveRight:       function() { this.dright = 1; },  
+    moveRight:       function() { this.dright = 1; },
     stopMovingLeft:  function() { this.dleft  = 0; },
     stopMovingRight: function() { this.dright = 0; }
 
@@ -709,4 +778,3 @@ Breakout = {
   //=============================================================================
 
 }; // Breakout
-

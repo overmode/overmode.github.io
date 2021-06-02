@@ -57,9 +57,9 @@ Breakout.Levels = [
       "", "",
       "                              ",
       "bbbbBBBBbbbbBBBBbbbb          ",
-      "                              ", 
+      "                              ",
       "b   b b   b bbbbbb b  b bbbbbb",
-      "b   b bbbbb b    b b bb b    b",
+      "b   b  b b  b    b b bb b    b",
       "bBBBb   b   b    b bb   b    b",
       "b   b   b   b    b b bb b    b",
       "b   b   b   bbbbbb b  b bbbbbb",
@@ -77,7 +77,7 @@ Breakout.Levels = [
       "", "",
       "                              ",
       "                              ",
-      "     bbbBBBcccCCCdddDDDeee    ", 
+      "     bbbBBBcccCCCdddDDDeee    ",
       "     aaaAAAaaaAAAaaaAAAaaa    ",
       "     fffFFFfffFFFfffFFFfff    ",
       "     bbbBBBcccCCCdddDDDeee    ",
@@ -98,7 +98,7 @@ Breakout.Levels = [
       "", "",
       "                              ",
       "                              ",
-      "     bbbBBBcccCCCdddDDDeee    ", 
+      "     bbbBBBcccCCCdddDDDeee    ",
       "     aaaAAAaaaAAAaaaAAAaaa    ",
       "     fffFFFfffFFFfffFFFfff    ",
       "     bbbBBBcccCCCdddDDDeee    ",
@@ -113,7 +113,7 @@ Breakout.Levels = [
     ],
     image : ['images/fitspro.png']
   },
-  
+
 
 
   { colors: Breakout.Colors.arkanoid,
@@ -121,7 +121,7 @@ Breakout.Levels = [
       "", "",
       "          yy      yy          ",
       "            yy  yy            ",
-      "            yy  yy            ", 
+      "            yy  yy            ",
       "          ssSSssSSss          ",
       "          ssSSssSSss          ",
       "        SSsswwsswwssSS        ",
@@ -324,5 +324,3 @@ Breakout.Levels = [
 
 
 ];
-
-
