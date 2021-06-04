@@ -1,5 +1,4 @@
 # Breakout
-========
 
 Customized version of the BREAKOUT by Hyoko
 
