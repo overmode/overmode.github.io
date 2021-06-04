@@ -3,5 +3,5 @@ WORKDIR /app
 COPY requirements.txt /app
 RUN pip3 install -r requirements.txt 
 COPY . /app 
-ENTRYPOINT ["python3"] 
-CMD ["main.py"]
+VOLUME [ "./score.csv" ]
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0"] 
